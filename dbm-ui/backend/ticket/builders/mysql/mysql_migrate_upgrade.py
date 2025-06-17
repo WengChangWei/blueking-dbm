@@ -160,8 +160,10 @@ class MysqlMigrateUpgradeFlowBuilder(MysqlMasterSlaveSwitchFlowBuilder):
             cluster = id_cluster_map[info["cluster_ids"][0]]
             ins = cluster.storageinstance_set.first()
             resource_spec["backend_group"] = {
-                "spec_id": ins.machine.spec_id,
-                "count": 1,
+                # "spec_id": ins.machine.spec_id,
+                "spec_id": info["resource_spec"]["new_master"]["spec_id"],
+                "count": info["resource_spec"]["new_master"]["count"],
+                "labels": info["resource_spec"]["new_master"]["labels"],
                 "location_spec": {"city": cluster.region, "sub_zone_ids": [ins.machine.bk_sub_zone_id]},
                 "affinity": cluster.disaster_tolerance_level,
             }
@@ -169,8 +171,9 @@ class MysqlMigrateUpgradeFlowBuilder(MysqlMasterSlaveSwitchFlowBuilder):
             for ins in cluster.storageinstance_set.all():
                 if ins.instance_role == InstanceRole.BACKEND_SLAVE and not ins.is_stand_by:
                     resource_spec[ins.machine.bk_host_id] = {
-                        "spec_id": ins.machine.spec_id,
+                        "spec_id": info["resource_spec"]["new_master"]["spec_id"],
                         "count": 1,
+                        "labels": info["resource_spec"]["new_master"]["labels"],
                         "location_spec": {"city": cluster.region, "sub_zone_ids": [ins.machine.bk_sub_zone_id]},
                         "affinity": AffinityEnum.NONE.value,
                     }

@@ -13,7 +13,7 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from backend.db_meta.enums import TenDBClusterSpiderRole
-from backend.db_services.dbbase.constants import IpSource
+from backend.db_services.dbbase.constants import IpSource, SourceType
 from backend.flow.engine.controller.spider import SpiderController
 from backend.ticket import builders
 from backend.ticket.builders.tendbcluster.base import (
@@ -32,6 +32,9 @@ class TendbSpiderAddNodesDetailSerializer(TendbBaseOperateDetailSerializer):
 
     ip_source = serializers.ChoiceField(
         help_text=_("机器导入类型"), choices=IpSource.get_choices(), required=False, default=IpSource.RESOURCE_POOL
+    )
+    source_type = serializers.ChoiceField(
+        help_text=_("资源来源类型"), choices=SourceType.get_choices(), required=False, default=SourceType.RESOURCE_AUTO
     )
     infos = serializers.ListSerializer(help_text=_("扩容信息"), child=SpiderNodesItemSerializer())
 
