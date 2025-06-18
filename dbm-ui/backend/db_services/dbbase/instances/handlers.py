@@ -77,16 +77,14 @@ class InstanceHandler:
                 biz_cluster_filter &= Q(cluster_type__in=cluster_type)
 
             query_filter = address_filter & biz_cluster_filter
-            proxy_query_filter = query_filter
             if instance_role:
-                query_filter &= Q(instance_role__in=instance_role)
-                proxy_query_filter &= Q(storageinstance__instance_role__in=instance_role)
+                query_filter &= Q(role__in=instance_role)
 
             # 由于不知道输入的是什么实例，因此把存储实例和 proxy 实例同时查询出来
             storages = (
                 StorageInstance.objects.select_related("machine")
                 .prefetch_related("cluster")
-                .annotate(role=F("instance_inner_role"), inst_port=F("port"))
+                .annotate(role=F("instance_role"), inst_port=F("port"))
                 .filter(query_filter)
             )
             proxies = (
@@ -96,13 +94,13 @@ class InstanceHandler:
                 .annotate(
                     role=Coalesce(F("tendbclusterspiderext__spider_role"), F("access_layer")), inst_port=F("port")
                 )
-                .filter(proxy_query_filter)
+                .filter(query_filter)
             )
             admin_proxies = (
                 ProxyInstance.objects.select_related("machine")
                 .prefetch_related("cluster")
                 .annotate(role=ADMIN_ROLE_CASE, inst_port=F("admin_port"))
-                .filter(proxy_query_filter)
+                .filter(query_filter)
                 .exclude(role=None)
             )
 
