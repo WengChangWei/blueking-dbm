@@ -67,9 +67,10 @@ class MysqlRestoreSlaveDetailSerializer(MySQLBaseOperateDetailSerializer):
         )
 
         # 校验集群存在最近一次全备
-        super(MysqlRestoreSlaveDetailSerializer, self).validated_cluster_latest_backup(
-            cluster_ids, attrs["backup_source"]
-        )
+        # 暂时注释
+        # super(MysqlRestoreSlaveDetailSerializer, self).validated_cluster_latest_backup(
+        #     cluster_ids, attrs["backup_source"]
+        # )
 
         return attrs
 
