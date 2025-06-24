@@ -71,8 +71,7 @@ class MysqlMigrateUpgradeDetailSerializer(MySQLBaseOperateDetailSerializer):
 
         # 校验集群最近一次备份记录是逻辑备份
         cluster_ids = fetch_cluster_ids(attrs)
-        # 暂时注释
-        # super().validated_cluster_latest_backup(cluster_ids, attrs["backup_source"], MySQLBackupTypeEnum.LOGICAL)
+        super().validated_cluster_latest_backup(cluster_ids, attrs["backup_source"], MySQLBackupTypeEnum.LOGICAL)
 
         if attrs["ip_source"] == IpSource.RESOURCE_POOL:
             return attrs

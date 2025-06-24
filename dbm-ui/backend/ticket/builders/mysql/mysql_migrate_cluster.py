@@ -63,8 +63,7 @@ class MysqlMigrateClusterDetailSerializer(MySQLBaseOperateDetailSerializer):
         super().validated_cluster_type(attrs, ClusterType.TenDBHA)
 
         # 校验集群存在最近一次全备
-        # 暂时注释
-        # super().validated_cluster_latest_backup(cluster_ids, attrs["backup_source"])
+        super().validated_cluster_latest_backup(cluster_ids, attrs["backup_source"])
 
         if attrs["ip_source"] == IpSource.RESOURCE_POOL:
             return attrs
