@@ -36,8 +36,7 @@ class TenDBClusterSwitchNodesFlowValidator(MysqlBaseValidator):
         """
         校验传入进来的spider_role是否非法
         """
-        # if spider_role not in [TenDBClusterSpiderRole.SPIDER_MASTER, TenDBClusterSpiderRole.SPIDER_SLAVE]:
-        if spider_role not in [TenDBClusterSpiderRole.SPIDER_MASTER]:
+        if spider_role not in [TenDBClusterSpiderRole.SPIDER_MASTER, TenDBClusterSpiderRole.SPIDER_SLAVE]:
             return f"{spider_role} is not support \n"
 
         return ""

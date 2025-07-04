@@ -266,7 +266,7 @@ class TicketTask(object):
                 cnf = ticket_type__config[ticket["ticket_type"]]
                 expire = cnf.configs.get(FlowTypeConfig.EXPIRE_CONFIG, TICKET_EXPIRE_DEFAULT_CONFIG)[expire_type]
                 # -1表示无限制，不参与终止
-                if expire > 0 and ticket["update_at"] < now - timedelta(hours=expire):
+                if expire > 0 and ticket["update_at"] < now - timedelta(days=expire):
                     expire_ticket_ids.append(ticket["id"])
 
         def notify_expire_tickets(expire_type):
