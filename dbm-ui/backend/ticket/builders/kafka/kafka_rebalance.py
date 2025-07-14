@@ -28,6 +28,7 @@ class KafkaRebalanceDetailSerializer(BigDataDetailsSerializer):
         ip = serializers.CharField(help_text=_("IP地址"))
         bk_host_id = serializers.IntegerField(help_text=_("主机ID"))
         port = serializers.IntegerField(help_text=_("端口"))
+
     cluster_id = serializers.IntegerField(help_text=_("集群ID"))
     topics = serializers.ListField(help_text=_("topics"), child=serializers.CharField())
     throttle_rate = serializers.IntegerField(help_text=_("要均衡的速率"))
