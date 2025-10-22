@@ -44,5 +44,5 @@ type ComponentResource struct {
 // ComponentDetail 组件详情
 type ComponentDetail struct {
 	coreentity.Metadata `json:",inline"`
-	Config              map[string]interface{} `json:"config,omitempty"`
+	Config              string `json:"config,omitempty"`
 }

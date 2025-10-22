@@ -135,17 +135,6 @@ func (b *BaseClusterConfigBuilder) ParseEnvConfig(
 	request *coreentity.ComponentDetail,
 ) (*webreq.ComponentDetail, error) {
 	var result = &webreq.ComponentDetail{}
-	err := copier.Copy(result, request)
-	if err != nil {
-		return nil, err
-	}
-	envMap := make(map[string]interface{})
-	result.Config = envMap
-	if request.Env != nil {
-		for _, envVar := range request.Env {
-			result.Config[envVar.Name] = envVar.Value
-		}
-	}
 	return result, nil
 }
 
@@ -239,8 +228,8 @@ func (v *VMClusterConfigBuilder) ParseEnvConfig(request *coreentity.ComponentDet
 	if request.Env != nil {
 		for _, envVar := range request.Env {
 			if envVar.Name == "EXTRA_ARGS" {
-				argsMap := parseCommandLineArgs(envVar.Value)
-				result.Config = argsMap
+				argsStr := parseCommandLineArgs(envVar.Value)
+				result.Config = argsStr
 			}
 		}
 	}
@@ -311,9 +300,9 @@ func buildComponentResource(component webreq.Component, serviceVersion string) c
 }
 
 // parseCommandLineArgs 将命令行参数字符串解析为map
-func parseCommandLineArgs(input string) map[string]interface{} {
-	// 创建一个map用于存储结果
-	result := make(map[string]interface{})
+func parseCommandLineArgs(input string) string {
+	// 存储结果
+	result := ""
 
 	// 按空格分割字符串，得到各个参数
 	params := strings.Fields(input)
@@ -328,7 +317,8 @@ func parseCommandLineArgs(input string) map[string]interface{} {
 		if len(parts) == 2 {
 			key := parts[0]
 			value := parts[1]
-			result[key] = value
+			//result[key] = value
+			result += fmt.Sprintf("%s: %s\n", key, value)
 		}
 	}
 
