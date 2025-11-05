@@ -150,3 +150,8 @@ type ComponentQueryParams struct {
 	ComponentName string `gorm:"size:32;not null;column:component_name" json:"componentName"`
 	Status        string `gorm:"size:100;column:status" json:"status"`
 }
+
+type AuthUserRoleQueryParams struct {
+	UserID string `gorm:"size:64;column:user_id" json:"userId"`
+	RoleID string `gorm:"size:64;column:role_id" json:"roleId"`
+}

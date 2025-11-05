@@ -24,6 +24,7 @@ import (
 	"dbm-services/common/go-pubpkg/apm/metric"
 	"dbm-services/common/go-pubpkg/apm/trace"
 	"io"
+	"k8s-dbs/core/util"
 	dbslogger "k8s-dbs/logger"
 	"log/slog"
 
@@ -50,6 +51,9 @@ func RegisterMiddleWare(engine *gin.Engine) {
 	// 注册 metrics 中间件
 	engine.Use(APIMetricsMiddleware())
 	slog.Info("Finish initial metric...")
+
+	engine.Use(APIAuthMiddleware(util.Db.GormDb))
+	slog.Info("Finish initial auth...")
 }
 
 // ParseReqBody 获取请求消息体
