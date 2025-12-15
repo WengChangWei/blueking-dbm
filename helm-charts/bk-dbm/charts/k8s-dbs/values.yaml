@@ -27,13 +27,13 @@ resources:
     memory: 2Gi
 
 # @param 节点选择约束配置
-nodeSelector: { }
+nodeSelector: {}
 
 # @param 容忍配置
-tolerations: [ ]
+tolerations: []
 
 # @param 亲和性配置
-affinity: { }
+affinity: {}
 
 containerPorts:
   # @param dbs 容器端口
@@ -69,15 +69,26 @@ server:
     maxIdelConns: 5
     maxLifeTime: "30m"
     maxIdleTime: "30m"
+  bkbase_datasource:
+    host: ""
+    port:
+    user: ""
+    password: ""
+    dbname: ""
+    tlsmode: "false"
+    maxOpenConns: 10
+    maxIdelConns: 5
+    maxLifeTime: "30m"
+    maxIdleTime: "30m"
 
 # @section ingress配置
 ingress:
   # @param ingress 开关
   enabled: false
   # @param ingress annotations 配置
-  annotations: { }
+  annotations: {}
   # @param ingress tls 配置
-  tls: [ ]
+  tls: []
   independentDomain:
     enabled: false
     name: "bk-data.example.com"
