@@ -28399,6 +28399,14 @@ msgstr "Domain name binding CLB"
 msgid "域名接绑CLB"
 msgstr "Domain name binding to CLB"
 
+#: backend/flow/engine/bamboo/scene/qdrant/qdrant_apply_flow.py
+msgid "查询CLB详情"
+msgstr "Query CLB details"
+
+#: backend/flow/engine/bamboo/scene/qdrant/qdrant_apply_flow.py
+msgid "暴露服务"
+msgstr "Expose service"
+
 #: backend/ticket/builders/redis/redis_backup.py:67
 msgid "集群备份"
 msgstr "cluster backup"

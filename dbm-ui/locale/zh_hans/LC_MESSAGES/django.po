@@ -28193,6 +28193,14 @@ msgstr "域名绑定CLB"
 msgid "域名接绑CLB"
 msgstr "域名接绑CLB"
 
+#: backend/flow/engine/bamboo/scene/qdrant/qdrant_apply_flow.py
+msgid "查询CLB详情"
+msgstr "查询CLB详情"
+
+#: backend/flow/engine/bamboo/scene/qdrant/qdrant_apply_flow.py
+msgid "暴露服务"
+msgstr "暴露服务"
+
 #: backend/ticket/builders/redis/redis_backup.py:67
 msgid "集群备份"
 msgstr "集群备份"
