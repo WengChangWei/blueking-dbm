@@ -41,17 +41,18 @@ import (
 
 // opsrequest 定义操作请求相关的常量
 const (
-	TTLSecondsAfterSucceed      int32 = 600
-	PreConditionDeadlineSeconds int32 = 10
-	TimeoutSeconds              int32 = 600
-	OpsNameSuffixLength         int   = 10
+	TTLSecondsAfterSucceed      int32  = 600
+	PreConditionDeadlineSeconds int32  = 10
+	TimeoutSeconds              int32  = 600
+	OpsNameSuffixLength         int    = 10
+	portHTTP                    string = "http"
 )
 
 // componentTargetPortsMap 组件目标端口映射表
 // key: 组件名称
 // value: 组件暴露的端口列表
 var componentTargetPortsMap = map[string][]string{
-	"surreal":   {"http"},
+	"surreal":   {portHTTP},
 	"tikv":      {"peer", "status"},
 	"pd":        {"client", "peer"},
 	"attu":      {"attu"},

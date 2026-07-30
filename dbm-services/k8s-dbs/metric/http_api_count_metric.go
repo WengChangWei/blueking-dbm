@@ -20,6 +20,8 @@ limitations under the License.
 package metric
 
 import (
+	commconst "k8s-dbs/common/constant"
+
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 )
@@ -29,13 +31,13 @@ const HTTPAPITotalMetric = "k8s_dbs_http_api_total"
 
 // HTTPAPITotalMetricTags http api 请求指标标签字段集合
 var HTTPAPITotalMetricTags = []string{
-	"api_name",
-	"method",
-	"status",
-	"bk_username",
-	"bk_app_code",
-	"code",
-	"result",
+	commconst.APIName,
+	commconst.LabelMethod,
+	commconst.LabelStatus,
+	commconst.LabelBkUserName,
+	commconst.LabelBkAppCode,
+	commconst.LabelCode,
+	commconst.LabelResult,
 }
 
 // HTTPAPITotalCounter HTTP 请求总数

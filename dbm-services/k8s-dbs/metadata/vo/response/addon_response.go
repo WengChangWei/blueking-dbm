@@ -73,7 +73,7 @@ func (k AddonResponse) MarshalJSON() ([]byte, error) {
 		"addonName":            k.AddonName,
 		"addonCategory":        k.AddonCategory,
 		"addonType":            k.AddonType,
-		"addonVersion":         k.AddonVersion,
+		JSONKeyAddonVersion:    k.AddonVersion,
 		"recommendedVersion":   k.RecommendedVersion,
 		"supportedVersions":    supportedVersionsArray,
 		"recommendedAcVersion": k.RecommendedAcVersion,
@@ -81,11 +81,11 @@ func (k AddonResponse) MarshalJSON() ([]byte, error) {
 		"topologies":           topologiesArray,
 		"releases":             releasesArray,
 		"active":               k.Active,
-		"description":          k.Description,
-		"createdBy":            k.CreatedBy,
-		"createdAt":            k.CreatedAt,
-		"updatedBy":            k.UpdatedBy,
-		"updatedAt":            k.UpdatedAt,
+		JSONKeyDescription:     k.Description,
+		JSONKeyCreatedBy:       k.CreatedBy,
+		JSONKeyCreatedAt:       k.CreatedAt,
+		JSONKeyUpdatedBy:       k.UpdatedBy,
+		JSONKeyUpdatedAt:       k.UpdatedAt,
 	}
 	return json.Marshal(output)
 }
@@ -105,7 +105,7 @@ func (k AddonVersionResp) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	output := map[string]interface{}{
-		"addonVersion":      k.AddonVersion,
+		JSONKeyAddonVersion: k.AddonVersion,
 		"supportedVersions": supportedVersionsArray,
 	}
 	return json.Marshal(output)

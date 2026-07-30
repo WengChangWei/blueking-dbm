@@ -34,16 +34,16 @@ const ClusterAPITotalMetric = "k8s_dbs_cluster_api_total"
 
 // ClusterAPITotalMetricTags cluster api 指标标签字段集合
 var ClusterAPITotalMetricTags = []string{
-	"api_name",
-	"method",
+	commconst.APIName,
+	commconst.LabelMethod,
 	"k8s_cluster_name",
 	"namespace",
 	"cluster_name",
-	"bk_username",
-	"bk_app_code",
-	"status",
-	"code",
-	"result",
+	commconst.LabelBkUserName,
+	commconst.LabelBkAppCode,
+	commconst.LabelStatus,
+	commconst.LabelCode,
+	commconst.LabelResult,
 }
 
 // ClusterAPITotalCounter Cluster API 请求总数

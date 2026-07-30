@@ -17,13 +17,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package constant
+package response
 
-// 通用 API 返回 message
+// 响应 JSON key 常量，用于 MarshalJSON 中构建 map 时使用
 const (
-	Success = "success"
-	Failed  = "failed"
+	JSONKeyAddonVersion = "addonVersion"
+	JSONKeyDescription  = "description"
+	JSONKeyCreatedBy    = "createdBy"
+	JSONKeyCreatedAt    = "createdAt"
+	JSONKeyUpdatedBy    = "updatedBy"
+	JSONKeyUpdatedAt    = "updatedAt"
 )
-
-// RowsKey 数据库操作影响行数的 JSON key
-const RowsKey = "rows"

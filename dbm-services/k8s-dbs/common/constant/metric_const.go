@@ -8,3 +8,13 @@ const IsClusterAPI = "is_cluster_api"
 
 // APIRequestEntity 上下文中保存请求实体的 key
 const APIRequestEntity = "api_request_entity"
+
+// Prometheus 指标标签名称常量
+const (
+	LabelMethod     = "method"
+	LabelStatus     = "status"
+	LabelBkUserName = "bk_username"
+	LabelBkAppCode  = "bk_app_code"
+	LabelCode       = "code"
+	LabelResult     = "result"
+)

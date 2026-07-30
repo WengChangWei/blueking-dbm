@@ -88,13 +88,13 @@ func (k K8sCrdClusterResponse) MarshalJSON() ([]byte, error) {
 	output := map[string]interface{}{
 		"id": k.ID,
 		"addonInfo": map[string]interface{}{
-			"id":            k.AddonInfo.ID,
-			"active":        k.AddonInfo.Active,
-			"addonCategory": k.AddonInfo.AddonCategory,
-			"addonType":     k.AddonInfo.AddonType,
-			"addonVersion":  k.AddonInfo.AddonVersion,
-			"addonName":     k.AddonInfo.AddonName,
-			"topology":      k.AddonInfo.Topology,
+			"id":                k.AddonInfo.ID,
+			"active":            k.AddonInfo.Active,
+			"addonCategory":     k.AddonInfo.AddonCategory,
+			"addonType":         k.AddonInfo.AddonType,
+			JSONKeyAddonVersion: k.AddonInfo.AddonVersion,
+			"addonName":         k.AddonInfo.AddonName,
+			"topology":          k.AddonInfo.Topology,
 		},
 		"addonClusterVersion": k.AddonClusterVersion,
 		"serviceVersion":      k.ServiceVersion,
@@ -113,11 +113,11 @@ func (k K8sCrdClusterResponse) MarshalJSON() ([]byte, error) {
 		"bkBizTitle":          k.BkBizTitle,
 		"tags":                k.Tags,
 		"status":              k.Status,
-		"createdBy":           k.CreatedBy,
-		"createdAt":           k.CreatedAt,
-		"updatedBy":           k.UpdatedBy,
-		"updatedAt":           k.UpdatedAt,
-		"description":         k.Description,
+		JSONKeyCreatedBy:      k.CreatedBy,
+		JSONKeyCreatedAt:      k.CreatedAt,
+		JSONKeyUpdatedBy:      k.UpdatedBy,
+		JSONKeyUpdatedAt:      k.UpdatedAt,
+		JSONKeyDescription:    k.Description,
 	}
 	return json.Marshal(output)
 }
