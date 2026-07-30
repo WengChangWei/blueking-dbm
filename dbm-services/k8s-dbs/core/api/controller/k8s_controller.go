@@ -156,7 +156,7 @@ func (k *K8sController) DeletePod(ctx *gin.Context) {
 	dbsCtx := commentity.DbsContext{
 		RequestType:      coreconst.DeleteK8sPod,
 		APIRequestParams: &auditParams,
-		BkAdditional: &deleteRequest.BKAdditional,
+		BkAdditional:     &deleteRequest.BKAdditional,
 	}
 	err := k.k8sProvider.DeletePod(&dbsCtx, &podDeleteEntity)
 	if err != nil {

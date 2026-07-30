@@ -528,7 +528,7 @@ func BuildCreateDomainRequest(
 	clusterEntity *metaentity.K8sCrdClusterEntity,
 	serviceEntity *metaentity.K8sClusterServiceEntity,
 ) (*infreq.CreateDomainRequest, error) {
-	clusterType, err := GetDbmClusterType(clusterEntity.AddonInfo.AddonType)
+	clusterType, err := GetDbmClusterType(clusterEntity.AddonInfo.AddonType, clusterEntity.TopoName)
 	if err != nil {
 		return nil, fmt.Errorf("GetDbmClusterType failed: %w", err)
 	}
@@ -554,7 +554,7 @@ func BuildGetDomainRequest(
 	clusterEntity *metaentity.K8sCrdClusterEntity,
 	domain string,
 ) (*infreq.GetDomainRequest, error) {
-	clusterType, err := GetDbmClusterType(clusterEntity.AddonInfo.AddonType)
+	clusterType, err := GetDbmClusterType(clusterEntity.AddonInfo.AddonType, clusterEntity.TopoName)
 	if err != nil {
 		return nil, fmt.Errorf("GetDbmClusterType failed: %w", err)
 	}
@@ -572,7 +572,7 @@ func BuildDeleteDomainRequest(
 	clusterEntity *metaentity.K8sCrdClusterEntity,
 	domain string,
 ) (*infreq.DeleteDomainRequest, error) {
-	clusterType, err := GetDbmClusterType(clusterEntity.AddonInfo.AddonType)
+	clusterType, err := GetDbmClusterType(clusterEntity.AddonInfo.AddonType, clusterEntity.TopoName)
 	if err != nil {
 		return nil, fmt.Errorf("GetDbmClusterType failed: %w", err)
 	}
@@ -588,7 +588,7 @@ func BuildDeleteDomainRequest(
 
 // BuildDomainNameFromCluster 根据集群信息构建域名字符串，供无 serviceEntity 的场景使用。
 func BuildDomainNameFromCluster(clusterEntity *metaentity.K8sCrdClusterEntity) (string, error) {
-	clusterType, err := GetDbmClusterType(clusterEntity.AddonInfo.AddonType)
+	clusterType, err := GetDbmClusterType(clusterEntity.AddonInfo.AddonType, clusterEntity.TopoName)
 	if err != nil {
 		return "", fmt.Errorf("GetDbmClusterType failed: %w", err)
 	}
